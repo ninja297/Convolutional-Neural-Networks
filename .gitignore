@@ -1,0 +1,5 @@
+.keras/
+.keras_task4/
+.cifar_manual/
+fontlist-v390.json
+__pycache__/
