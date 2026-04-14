@@ -1,106 +1,247 @@
-# Convolutional Neural Networks Lab
+# Convolutional Neural Networks Lab Assignment
 
-This repository contains my end-to-end CNN lab assignment work in a single Jupyter notebook:
+## Student Details
+
+- **Name:** Saloni Kushwaha
+- **Roll Number:** 24it3045
+
+## Overview
+
+This repository contains my complete Convolutional Neural Networks lab assignment in a single Jupyter notebook:
 [CNN_Lab_main.ipynb](./CNN_Lab_main.ipynb)
 
-The project covers the full workflow from data preparation and CNN fundamentals to training, interpretability, and transfer learning. All tasks were completed with reproducibility in mind using a fixed random seed of `42`.
+The work covers the full pipeline of CNN-based image classification, starting from environment setup and dataset inspection, moving through manual convolution and custom CNN design, and ending with interpretability and transfer learning. The notebook includes code, outputs, written observations, plots, and reflection answers required for submission.
 
-## Notebook Scope
+The assignment uses both **MNIST** and **CIFAR-10** and combines **TensorFlow/Keras** and **PyTorch** where appropriate. Early tasks were completed with TensorFlow/Keras, while the heavier transfer-learning experiments were completed with **GPU-enabled PyTorch** for faster execution.
 
-The notebook currently includes:
+## Submission Contents
 
-- environment setup and package verification
-- MNIST and CIFAR-10 dataset exploration
-- preprocessing and augmentation pipelines
-- manual 2D convolution using NumPy
-- LeNet-5 implementation and parameter analysis
-- a custom CIFAR-10 CNN architecture
-- optimiser, learning-rate, batch-size, and regularisation experiments
-- filter visualisation, feature maps, Grad-CAM, and confusion analysis
-- transfer learning with a pre-trained ResNet50 backbone
+The main submission artifact is:
 
-## Main Files
+- `CNN_Lab_main.ipynb`
 
-- `CNN_Lab_main.ipynb`: master notebook containing all written answers, code, outputs, and plots
-- `dataset_samples.png`: MNIST and CIFAR-10 sample grid
-- `augmentation_demo.png`: CIFAR-10 augmentation examples
-- `lenet_sgd_curves.png`: Task 3 first training run curves
-- `optimiser_comparison.png`: optimiser comparison plot
-- `regularisation_experiment.png`: regularisation comparison curves
-- `lr_schedule_comparison.png`: learning-rate scheduler comparison
-- `conv1_filters.png`: first-layer learned filters
-- `fmaps_layer1.png`: early-layer feature maps
-- `fmaps_last.png`: last-layer feature maps
-- `gradcam_results.png`: Grad-CAM visualisation results
-- `confusion_matrix.png`: CIFAR-10 confusion matrix
-- `most_confused_examples.png`: examples from the most confused class pair
-- `tl_frozen.png`: frozen-base transfer learning curve
-- `tl_finetuned.png`: gradual fine-tuning curve
+Supporting figures generated during the notebook include:
 
-## Tasks Overview
+- `dataset_samples.png`
+- `augmentation_demo.png`
+- `lenet_sgd_curves.png`
+- `optimiser_comparison.png`
+- `regularisation_experiment.png`
+- `lr_schedule_comparison.png`
+- `conv1_filters.png`
+- `fmaps_layer1.png`
+- `fmaps_last.png`
+- `gradcam_results.png`
+- `confusion_matrix.png`
+- `most_confused_examples.png`
+- `tl_frozen.png`
+- `tl_finetuned.png`
+- `tl_benchmark.png`
+
+## Datasets Used
+
+### MNIST
+
+Used for:
+
+- dataset exploration
+- preprocessing checks
+- LeNet-5 implementation
+- first training experiments
+- optimiser comparison
+
+### CIFAR-10
+
+Used for:
+
+- dataset exploration
+- augmentation pipeline
+- custom CNN design
+- tuning and regularisation experiments
+- interpretability experiments
+- transfer learning and fine-tuning
+
+## Task-Wise Summary
 
 ### Task 1: Environment Setup & Data Pipeline
 
-- verified the deep learning environment
-- explored MNIST and CIFAR-10 shapes, dtypes, and value ranges
-- implemented manual preprocessing
-- built a training-only augmentation pipeline
+This section establishes the working deep learning environment and prepares the datasets for later CNN tasks.
+
+Completed work:
+
+- verified package versions and hardware availability
+- set all random seeds to `42` for reproducibility
+- checked whether GPU support was available
+- loaded MNIST and CIFAR-10 datasets
+- inspected shapes, data types, and raw pixel ranges
+- checked MNIST class balance
+- built a manual preprocessing pipeline
+- normalized images to `[0, 1]`
+- reshaped MNIST from `(N, 28, 28)` to `(N, 28, 28, 1)`
+- applied one-hot encoding to labels
+- created a CIFAR-10 augmentation pipeline with flip, rotation, and zoom
+
+Generated outputs:
+
+- `dataset_samples.png`
+- `augmentation_demo.png`
 
 ### Task 2: Building a CNN from Scratch
 
-- implemented manual convolution with NumPy
-- derived output sizes analytically
-- built LeNet-5
-- designed a custom CNN for CIFAR-10
+This section focuses on core CNN mechanics and architecture design.
+
+Completed work:
+
+- implemented a manual 2D convolution function using NumPy only
+- computed the numerical feature map for the given Sobel-style kernel
+- derived output sizes analytically using the convolution formula
+- implemented LeNet-5 from the architecture description
+- printed the model summary
+- manually verified parameter calculations
+- designed an original custom CNN for CIFAR-10
+- included an ASCII architecture sketch and design rationale
+
+Key architectural work:
+
+- LeNet-5 for MNIST
+- custom CNN for CIFAR-10 with convolution blocks, batch normalization, pooling, dropout, and classification head
 
 ### Task 3: Training, Tuning & Regularisation
 
-- trained LeNet-5 on MNIST
-- compared SGD, SGD with momentum, and Adam
-- ran a learning-rate and batch-size grid search
-- compared regularisation strategies
-- evaluated learning-rate scheduling
+This section evaluates model training behaviour under different optimisation and regularisation settings.
+
+Completed work:
+
+- trained LeNet-5 on MNIST for the first full run
+- plotted training and validation loss
+- plotted training and validation accuracy
+- identified overfitting behaviour
+- reported test accuracy
+- compared three optimisers:
+  - SGD
+  - SGD with momentum
+  - Adam
+- performed a grid search over learning rate and batch size
+- compared four regularisation settings on CIFAR-10:
+  - no regularisation
+  - dropout only
+  - batch normalization only
+  - dropout + batch normalization
+- compared two learning-rate schedulers:
+  - ReduceLROnPlateau
+  - Cosine Annealing
+
+Generated outputs:
+
+- `lenet_sgd_curves.png`
+- `optimiser_comparison.png`
+- `regularisation_experiment.png`
+- `lr_schedule_comparison.png`
+
+Important observations from this section:
+
+- momentum and Adam converged faster than plain SGD
+- regularisation strongly affected train-validation gap
+- scheduler choice changed validation behaviour over training
 
 ### Task 4: Visualisation & Interpretability
 
-- visualised first-layer filters
-- compared intermediate feature maps
+This section explores what the CIFAR-10 CNN learns internally and how its predictions can be interpreted.
+
+Completed work:
+
+- visualised learned filters from the first convolutional layer
+- displayed early-layer and late-layer feature maps
 - implemented Grad-CAM from scratch
-- generated a confusion matrix and classification report
+- generated Grad-CAM visualisations for correctly classified and misclassified examples
+- computed and plotted the confusion matrix
+- generated the classification report
+- identified strongest and weakest classes
+- identified the most confused class pair
+- visualised misclassified samples from that confusion pair
+
+Generated outputs:
+
+- `conv1_filters.png`
+- `fmaps_layer1.png`
+- `fmaps_last.png`
+- `gradcam_results.png`
+- `confusion_matrix.png`
+- `most_confused_examples.png`
+
+Representative findings:
+
+- early filters learned edge, texture, and color-contrast style patterns
+- early feature maps were visually interpretable, while deeper maps became more abstract
+- Grad-CAM helped show whether the model was focusing on the object or distracting background regions
 
 ### Task 5: Transfer Learning & Fine-Tuning
 
-- used a pre-trained ResNet50 as a frozen feature extractor
-- fine-tuned the final convolutional layers with a smaller learning rate
-- compared transfer learning against training from scratch
+This section compares training from scratch with transfer learning using a pre-trained ImageNet backbone.
 
-## Frameworks and Libraries
+Completed work:
+
+- used a pre-trained `ResNet50` as a frozen feature extractor
+- resized CIFAR-10 images to `96 x 96`
+- applied the model’s recommended preprocessing
+- trained only the custom head for 10 epochs
+- unfroze the last 4 convolutional layers and fine-tuned with a smaller learning rate
+- applied early stopping during fine-tuning
+- performed an ablation study for:
+  - top 2 layers unfrozen
+  - top 8 layers unfrozen
+  - all layers unfrozen
+- benchmarked three setups:
+  - scratch CNN
+  - frozen pre-trained base
+  - fine-tuned pre-trained base
+
+Generated outputs:
+
+- `tl_frozen.png`
+- `tl_finetuned.png`
+- `tl_benchmark.png`
+
+Key benchmark results:
+
+- scratch CNN test accuracy: `0.7195`
+- frozen pre-trained base test accuracy: `0.8432`
+- fine-tuned pre-trained base test accuracy: `0.8571`
+
+This showed that transfer learning clearly outperformed the scratch-trained CNN for this task.
+
+## Tools, Frameworks, and Libraries
 
 This project uses:
 
 - Python
+- Jupyter Notebook
+- NumPy
+- Pandas
+- Matplotlib
 - TensorFlow / Keras
 - PyTorch
-- NumPy
-- Matplotlib
 - scikit-learn
-
-The heavier transfer-learning experiments were run with GPU-enabled PyTorch for faster execution.
 
 ## Reproducibility
 
-- random seed fixed to `42`
-- outputs saved directly from notebook cells
-- figures stored in the repository with the filenames required by the assignment
+The notebook was prepared with reproducibility in mind:
 
-## How to Open
+- random seed set to `42`
+- outputs retained in notebook cells
+- required plots saved with assignment-specified filenames
+- model summaries included for built models
 
-1. Clone the repository.
+## How to Open and Run
+
+1. Clone this repository.
 2. Open `CNN_Lab_main.ipynb` in Jupyter Notebook, JupyterLab, or VS Code.
-3. Run cells from top to bottom if you want to reproduce the outputs locally.
+3. Run the cells in order if you want to reproduce outputs locally.
+4. Make sure the required Python packages are installed before execution.
 
-## Notes
+## Repository Notes
 
-- This repository is structured around the notebook rather than separate Python modules.
-- Some helper scripts may exist locally during development, but the notebook and saved figures are the primary submission artifacts.
+- The notebook is the main academic submission file.
+- The figures in this repository are generated directly from notebook experiments.
+- Helper development files may exist locally during experimentation, but the notebook and saved figures are the important final artifacts.
 
