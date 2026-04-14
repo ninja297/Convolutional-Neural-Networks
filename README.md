@@ -1,131 +1,106 @@
-# 📌 Convolutional Neural Networks Lab Assignment
+# Convolutional Neural Networks Lab
 
-## 🚀 Overview
-This repository contains my complete implementation of a Convolutional Neural Networks (CNN) Lab Assignment as part of a Machine Learning / Deep Learning course.
+This repository contains my end-to-end CNN lab assignment work in a single Jupyter notebook:
+[CNN_Lab_main.ipynb](./CNN_Lab_main.ipynb)
 
-The project covers the full CNN pipeline — from data preprocessing to transfer learning — including manual implementation and model interpretability.
+The project covers the full workflow from data preparation and CNN fundamentals to training, interpretability, and transfer learning. All tasks were completed with reproducibility in mind using a fixed random seed of `42`.
 
----
+## Notebook Scope
 
-## 🧠 Key Features
-- Built CNN from scratch using NumPy
-- Implemented LeNet-5 architecture
-- Designed a custom CNN for CIFAR-10
-- Performed training, tuning & regularisation
-- Visualised filters, feature maps & Grad-CAM
-- Applied transfer learning (VGG16 / ResNet50)
-- Compared scratch vs pretrained models
+The notebook currently includes:
 
----
+- environment setup and package verification
+- MNIST and CIFAR-10 dataset exploration
+- preprocessing and augmentation pipelines
+- manual 2D convolution using NumPy
+- LeNet-5 implementation and parameter analysis
+- a custom CIFAR-10 CNN architecture
+- optimiser, learning-rate, batch-size, and regularisation experiments
+- filter visualisation, feature maps, Grad-CAM, and confusion analysis
+- transfer learning with a pre-trained ResNet50 backbone
 
-## 📂 Dataset
-- MNIST (Handwritten digits)
-- CIFAR-10 (Object classification)
+## Main Files
 
----
+- `CNN_Lab_main.ipynb`: master notebook containing all written answers, code, outputs, and plots
+- `dataset_samples.png`: MNIST and CIFAR-10 sample grid
+- `augmentation_demo.png`: CIFAR-10 augmentation examples
+- `lenet_sgd_curves.png`: Task 3 first training run curves
+- `optimiser_comparison.png`: optimiser comparison plot
+- `regularisation_experiment.png`: regularisation comparison curves
+- `lr_schedule_comparison.png`: learning-rate scheduler comparison
+- `conv1_filters.png`: first-layer learned filters
+- `fmaps_layer1.png`: early-layer feature maps
+- `fmaps_last.png`: last-layer feature maps
+- `gradcam_results.png`: Grad-CAM visualisation results
+- `confusion_matrix.png`: CIFAR-10 confusion matrix
+- `most_confused_examples.png`: examples from the most confused class pair
+- `tl_frozen.png`: frozen-base transfer learning curve
+- `tl_finetuned.png`: gradual fine-tuning curve
 
-## ⚙️ Tech Stack
+## Tasks Overview
+
+### Task 1: Environment Setup & Data Pipeline
+
+- verified the deep learning environment
+- explored MNIST and CIFAR-10 shapes, dtypes, and value ranges
+- implemented manual preprocessing
+- built a training-only augmentation pipeline
+
+### Task 2: Building a CNN from Scratch
+
+- implemented manual convolution with NumPy
+- derived output sizes analytically
+- built LeNet-5
+- designed a custom CNN for CIFAR-10
+
+### Task 3: Training, Tuning & Regularisation
+
+- trained LeNet-5 on MNIST
+- compared SGD, SGD with momentum, and Adam
+- ran a learning-rate and batch-size grid search
+- compared regularisation strategies
+- evaluated learning-rate scheduling
+
+### Task 4: Visualisation & Interpretability
+
+- visualised first-layer filters
+- compared intermediate feature maps
+- implemented Grad-CAM from scratch
+- generated a confusion matrix and classification report
+
+### Task 5: Transfer Learning & Fine-Tuning
+
+- used a pre-trained ResNet50 as a frozen feature extractor
+- fine-tuned the final convolutional layers with a smaller learning rate
+- compared transfer learning against training from scratch
+
+## Frameworks and Libraries
+
+This project uses:
+
 - Python
-- TensorFlow / Keras (or PyTorch)
+- TensorFlow / Keras
+- PyTorch
 - NumPy
 - Matplotlib
-- Scikit-learn
+- scikit-learn
 
----
+The heavier transfer-learning experiments were run with GPU-enabled PyTorch for faster execution.
 
-## 📁 Project Structure
-cnn-lab-assignment/
-│
-├── Task1_Data_Pipeline/
-├── Task2_CNN_From_Scratch/
-├── Task3_Training_Tuning/
-├── Task4_Visualization/
-├── Task5_Transfer_Learning/
-│
-├── outputs/
-│   ├── dataset_samples.png
-│   ├── augmentation_demo.png
-│   ├── lenet_sgd_curves.png
-│   ├── optimiser_comparison.png
-│   ├── gradcam_results.png
-│   └── ...
-│
-└── README.md
+## Reproducibility
 
----
+- random seed fixed to `42`
+- outputs saved directly from notebook cells
+- figures stored in the repository with the filenames required by the assignment
 
-## 🧩 Tasks Breakdown
+## How to Open
 
-### 🔹 Task 1: Environment & Data Pipeline
-- Dataset loading and exploration
-- Data preprocessing (normalisation, reshaping, encoding)
-- Data augmentation
+1. Clone the repository.
+2. Open `CNN_Lab_main.ipynb` in Jupyter Notebook, JupyterLab, or VS Code.
+3. Run cells from top to bottom if you want to reproduce the outputs locally.
 
-### 🔹 Task 2: CNN from Scratch
-- Manual 2D convolution using NumPy
-- Implemented LeNet-5
-- Designed custom CNN architecture
+## Notes
 
-### 🔹 Task 3: Training & Regularisation
-- Optimiser comparison (SGD, Momentum, Adam)
-- Learning rate and batch size tuning
-- Regularisation: Dropout, BatchNorm
-- Learning rate scheduling
+- This repository is structured around the notebook rather than separate Python modules.
+- Some helper scripts may exist locally during development, but the notebook and saved figures are the primary submission artifacts.
 
-### 🔹 Task 4: Visualisation & Interpretability
-- Filter visualisation
-- Feature maps extraction
-- Grad-CAM implementation
-- Confusion matrix & classification report
-
-### 🔹 Task 5: Transfer Learning
-- Pretrained models (VGG16 / ResNet50)
-- Feature extraction vs fine-tuning
-- Layer unfreezing experiments
-- Performance benchmarking
-
----
-
-## 📊 Results
-- High accuracy achieved on MNIST and CIFAR-10
-- Transfer learning improved performance significantly
-- Better generalisation with regularisation techniques
-
----
-
-## 🛠️ How to Run
-
-# Clone the repository
-git clone https://github.com/your-username/cnn-lab-assignment.git
-
-# Navigate to project
-cd cnn-lab-assignment
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run Jupyter Notebook
-jupyter notebook
-
----
-
-## 📌 Key Learnings
-- CNNs learn hierarchical features (edges → shapes → objects)
-- Small kernels improve efficiency
-- Regularisation prevents overfitting
-- Transfer learning boosts performance on small datasets
-- Grad-CAM helps interpret model predictions
-
----
-
-## 📎 Submission Details
-- All tasks implemented from scratch
-- Reproducible results (random seed = 42)
-- Includes plots, analysis, and model summaries
-
----
-
-## 🤝 Acknowledgment
-This project was completed as part of an academic lab assignment. All implementations are original and built independently.
-
----
